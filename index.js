@@ -1,4 +1,4 @@
-const { MongoClient } =require('mongodb');
+const { MongoClient } = require('mongodb');
 
 async function main() {
 //replace <connection-string> with your MongoDB URI
@@ -13,12 +13,12 @@ try{
     const collection =db.collection ("users");
 
     //Insert a document
-    await collection.insertOne({ name: "Alice", age: 25});
+    //await collection.insertOne({ name: "Syafiq", age: 23});
     console.log("Document inserted!");
 
     //Query the document
-    const result = await collection.findOne({ name: "Alice"});
-        console.log("Query result:", result);
+    const result = await collection.findOne({ name: "Syafiq"});
+    console.log("Query result:", result);
         
     }catch (err){
     console.error("Error:", err);
