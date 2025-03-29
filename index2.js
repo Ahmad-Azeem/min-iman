@@ -1,5 +1,25 @@
 const { MongoClient } = require('mongodb');
 
+const drivers = [
+    { name: "Syafiq", age: 55 },
+    { name: "Syafiq", age: 23 },
+   
+];
+
+console.log(drivers);
+//console.log(drivers[0].name);
+
+//TODO: show all the drivers name in the console
+for (let i = 0; i < drivers.length; i++) {
+    console.log(drivers[i].name);
+}
+
+//TODO: Add additional driver to the array
+drivers.push({ name: "Ali", age: 30 });
+console.log(drivers);
+
+//kau gi test dulu semua code after TODO ni, lepas tu baru kita sambung
+
 async function main() {
 //replace <connection-string> with your MongoDB URI
 const uri ="mongodb://localhost:27017";
