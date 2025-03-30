@@ -49,11 +49,12 @@ const client = new MongoClient(uri);
 
 try{
 
-    await client.connect(); //connect to the MongoDB server
-    console.log("Connected to MongoDB");//console.log very important to check if the connection is successful
+   await client.connect(); 
+    console.log("Connected to MongoDB");
 
-    await client.connect();
     const db = client.db("testDB");
+    const collection = db.collection("carDrivers");
+    
 
     const carDriversCollection = db.collection("carDrivers");
 
@@ -64,7 +65,7 @@ try{
 
     const availableDrivers = await db.collection('carDrivers').find({
          isAvailable: true,
-         rating: { $gte: 4.5 }
+         rating: { $gte: 4.8 } // Filter for drivers with rating >= 4.8
     }).toArray();
     console.log( "Available drivers:", availableDrivers);
 
