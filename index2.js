@@ -1,46 +1,92 @@
 const { MongoClient } = require('mongodb');
 
-const drivers = [
-    { name: "Syafiq", age: 55 },
-    { name: "Syafiq", age: 23 },
-   
+const carDrivers =[
+    {
+        name: "John Doe",
+        vehicleType: "Sedan",
+        isAvailable: true,
+        rating: 4.8 
+    },
+    {
+        name: "Alice Smith",
+        vehicleType: "SUV",
+        isAvailable: false,
+        rating: 4.5
+    }
+
 ];
 
-console.log(drivers);
-//console.log(drivers[0].name);
 
 //TODO: show all the drivers name in the console
-for (let i = 0; i < drivers.length; i++) {
-    console.log(drivers[i].name);
-}
+console.log(carDrivers);
+
+//carDrivers.forEach((element) => console.log(element)); // alternative 1
+
+/*for (let i = 0; i< carDrivers.length; i++){
+    console.log(carDrivers[i]);
+}*/ //alternative 2
+
+
 
 //TODO: Add additional driver to the array
-drivers.push({ name: "Ali", age: 30 });
-console.log(drivers);
+const newDriver = {
+    name: "Iman",
+    vehicleType: "Truck",
+    isAvailable: true,
+    rating: 4.7
+};
+carDrivers.push(newDriver);
+console.log(carDrivers);
+/*for (let i = 0; i < carDrivers.length; i++) {
+   console.log(carDrivers[i]);*/ //alternative 1
 
-//kau gi test dulu semua code after TODO ni, lepas tu baru kita sambung
 
+   
 async function main() {
 //replace <connection-string> with your MongoDB URI
 const uri ="mongodb://localhost:27017";
 const client = new MongoClient(uri);
 
 try{
-    await client.connect();
+
+    await client.connect(); //connect to the MongoDB server
     console.log("Connected to MongoDB");//console.log very important to check if the connection is successful
+
+    await client.connect();
+    const db = client.db("testDB");
+
+    const carDriversCollection = db.collection("carDrivers");
+
+    carDrivers.forEach(async (carDrivers) => {
+        const result = await carDriversCollection.insertOne(carDrivers);
+        console.log(`New car driver created with result: ${result}`);
+    });
+
+    const availableDrivers = await db.collection('carDrivers').find({
+         isAvailable: true,
+         rating: { $gte: 4.5 }
+    }).toArray();
+    console.log( "Available drivers:", availableDrivers);
+
+}finally {
+    await client.close();
+}
+
+//try{
+    //await client.connect(); 
+    //console.log("Connected to MongoDB");//console.log very important to check if the connection is successful
      
     //Access the database and collection
-    const db = client.db("testDB");
-    const collection =db.collection ("users");
+   // const db = client.db("testDB");
+    //const collection =db.collection ("users");
 
-    //Insert a document
+   /* //Insert a document
     await collection.insertOne({ name: "Syafiq", age: 55});
     console.log("Document inserted!");
-    //await collection.insertOne({ name: "Syafiq", age: 23});
-    console.log("Document inserted!");
+  
 
     //Query the document
-    const result = await collection.findOne({ name: "Syafiq"});
+    result = await collection.findOne({ name: "Syafiq"});
     console.log("Query result:", result);
         
     }catch (err){
@@ -48,8 +94,7 @@ try{
 
     }finally{
     await client.close();
-    }
+    }*/
 
-}
 
-main();
+main()};
