@@ -1,101 +1,83 @@
 const { MongoClient } = require('mongodb');
 
-const carDrivers =[
-    {
+const carDrivers = [
+    {  
         name: "John Doe",
         vehicleType: "Sedan",
         isAvailable: true,
-        rating: 4.8 
+        rating: 4.9
     },
-    {
+    {  
         name: "Alice Smith",
         vehicleType: "SUV",
         isAvailable: false,
-        rating: 4.5
-    }
-
+        rating: 4.4
+    },
 ];
 
-
-//TODO: show all the drivers name in the console
 console.log(carDrivers);
 
-//carDrivers.forEach((element) => console.log(element)); // alternative 1
-
-/*for (let i = 0; i< carDrivers.length; i++){
-    console.log(carDrivers[i]);
-}*/ //alternative 2
-
-
-
-//TODO: Add additional driver to the array
 const newDriver = {
-    name: "Iman",
-    vehicleType: "Truck",
+    name: "Syafiq Iman",
+    vehicleType: "Convertible",
     isAvailable: true,
-    rating: 4.7
+    rating: 4.3
 };
 carDrivers.push(newDriver);
 console.log(carDrivers);
-/*for (let i = 0; i < carDrivers.length; i++) {
-   console.log(carDrivers[i]);*/ //alternative 1
 
-
-   
 async function main() {
-//replace <connection-string> with your MongoDB URI
-const uri ="mongodb://localhost:27017";
-const client = new MongoClient(uri);
+    const uri = "mongodb://localhost:27017";
+    const client = new MongoClient(uri);
 
-try{
+    try {
+        console.time("Connection Time");  // Start the timer
 
-   await client.connect(); 
-    console.log("Connected to MongoDB");
+        await client.connect();
+        console.log("Connected to MongoDB");
 
-    const db = client.db("testDB");
-    const collection = db.collection("carDrivers");
-    
+        console.timeEnd("Connection Time");  // End the timer
 
-    const carDriversCollection = db.collection("carDrivers");
+        const db = client.db("testDB");
+        const carDriversCollection = db.collection("carDrivers");
 
-    carDrivers.forEach(async (carDrivers) => {
-        const result = await carDriversCollection.insertOne(carDrivers);
-        console.log(`New car driver created with result: ${result}`);
-    });
+        //CREATE: Insert each driver in the carDrivers array
+        for (const driver of carDrivers) {
+            const result = await carDriversCollection.insertOne(driver);
+            console.log(`New driver inserted with result: ${result}`);
+        }
 
-    const availableDrivers = await db.collection('carDrivers').find({
-         isAvailable: true,
-         rating: { $gte: 4.8 } // Filter for drivers with rating >= 4.8
-    }).toArray();
-    console.log( "Available drivers:", availableDrivers);
+        //READ: Find all drivers with rating >= 4.5 and isAvailable = true
+       /* const availableDrivers = await db.collection("carDrivers").find({ 
+            isAvailable: true,
+            rating: {$gte: 4.5} 
+        }).toArray();
+        console.log("available drivers:", availableDrivers);*/
 
-}finally {
-    await client.close();
+        //UPDATE: Update the rating of a driver by name
+        const updateResult = await db.collection('carDrivers').updateOne(
+            { name: "John Doe"},
+            { $inc: { rating: 0.1}}
+        );
+
+        console.log(`Driver updated with result: ${updateResult}`)
+
+        //DELETE: Delete a driver by name
+
+        const deleteResult = await db.collection('carDrivers').deleteOne({isAvailable: false});
+        console.log(`Driver deleted with result: ${deleteResult}`);
+       /* const deleteResult = await db.collection('carDrivers').deleteOne(
+            { name: "Alice Smith"}
+        );
+        console.log(`Driver deleted with result: ${deleteResult}`)*/
+
+
+    } catch (err) {
+        console.error("Error:", err);
+
+    } finally {
+        await client.close();
+    }
 }
 
-//try{
-    //await client.connect(); 
-    //console.log("Connected to MongoDB");//console.log very important to check if the connection is successful
-     
-    //Access the database and collection
-   // const db = client.db("testDB");
-    //const collection =db.collection ("users");
-
-   /* //Insert a document
-    await collection.insertOne({ name: "Syafiq", age: 55});
-    console.log("Document inserted!");
-  
-
-    //Query the document
-    result = await collection.findOne({ name: "Syafiq"});
-    console.log("Query result:", result);
-        
-    }catch (err){
-    console.error("Error:", err);
-
-    }finally{
-    await client.close();
-    }*/
-
-
-main()};
+main();
