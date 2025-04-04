@@ -54,12 +54,6 @@ async function main() {
         }).toArray();
         console.log("available drivers:", availableDrivers);
 
-        //UPDATE: Update the rating of a driver by incrementing them by 0.1 based on his/her name
-       /* const updateResult = await db.collection('carDrivers').updateOne(
-            { name: "John Doe"},
-            { $inc: { rating: 0.1}}
-        );
-        console.log(`Driver updated with result: ${updateResult}`)*/ 
 
         //UPDATE: Update the rating of all drivers by incrementing them by 0.1 if they are available
         const updateResult = await db.collection('carDrivers').updateMany(
