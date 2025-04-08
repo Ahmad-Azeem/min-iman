@@ -13,11 +13,11 @@ try{
     const collection =db.collection ("users");
 
     //Insert a document
-    //await collection.insertOne({ name: "Syafiq", age: 23});
+    await collection.insertOne({ name: "Syafiq", age: 23});
     console.log("Document inserted!");
 
     //Query the document
-    const result = await collection.findOne({ name: "Syyafiq"});
+    const result = await collection.findOne({ name: "Syafiq"});
     console.log("Query result:", result);
         
     }catch (err){
