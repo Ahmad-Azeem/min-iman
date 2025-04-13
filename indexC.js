@@ -1,4 +1,4 @@
-const express = require('express');
+/*const express = require('express');
 const { MongoClient, ObjectId } = require('mongodb');
 const port = 3000;
 
@@ -78,4 +78,4 @@ app.delete('/rides/:id', async (req, res) => {
     } catch (err) {
         res.status(400).json({ error: "Invalid Ride Id Or Data" });
     }
-});
+});*/
