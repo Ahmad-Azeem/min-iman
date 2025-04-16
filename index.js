@@ -1,9 +1,14 @@
 const express = require('express');
+const cors = require('cors');
 const { MongoClient, ObjectId } = require('mongodb');
+
+const app = express(); // ✅ Only define app ONCE
 const port = 3000;
 
-const app = express();
+app.use(cors());
 app.use(express.json());
+
+
 
 let db;
 
