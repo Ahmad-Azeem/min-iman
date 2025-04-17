@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GrabCar Rides Dashboard</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f6f6f6;
+      color: #333;
+    }
+    h2, h3 {
+      color: #00b14f;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    input, button, select {
+      margin: 5px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    button {
+      background-color: #00b14f;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #009e45;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #e8f5e9;
+    }
+    .refresh-btn {
+      background-color: #007e33;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🚗 GrabCar Rides Dashboard</h2>
+    <h3>Create Ride</h3>
+    <input id="pickup" placeholder="Pickup Location" />
+    <input id="destination" placeholder="Destination" />
+    <input id="driverId" placeholder="Driver ID" />
+    <select id="status">
+      <option value="requested">requested</option>
+      <option value="ongoing">ongoing</option>
+      <option value="completed">completed</option>
+      <option value="cancelled">cancelled</option>
+    </select>
+    <button onclick="createRide()">➕ Add Ride</button>
+  </div>
+
+  <div class="card">
+    <h3>All Rides</h3>
+    <button class="refresh-btn" onclick="loadRides()">🔄 Refresh</button>
+    <table id="ridesTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Pickup</th>
+          <th>Destination</th>
+          <th>Driver ID</th>
+          <th>Status</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    const API = 'http://localhost:3000/rides';
+
+    function createRide() {
+      const data = {
+        pickupLocation: document.getElementById('pickup').value,
+        destination: document.getElementById('destination').value,
+        driverId: document.getElementById('driverId').value,
+        status: document.getElementById('status').value
+      };
+
+      fetch(API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).then(() => loadRides());
+    }
+
+    function loadRides() {
+      fetch(API)
+        .then(res => res.json())
+        .then(rides => {
+          const tbody = document.querySelector('#ridesTable tbody');
+          tbody.innerHTML = '';
+          rides.forEach(ride => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${ride._id}</td>
+              <td>${ride.pickupLocation}</td>
+              <td>${ride.destination}</td>
+              <td>${ride.driverId}</td>
+              <td>${ride.status}</td>
+              <td>
+                <select onchange="updateRide('${ride._id}', this.value)">
+                  <option value="requested">requested</option>
+                  <option value="ongoing">ongoing</option>
+                  <option value="completed">completed</option>
+                  <option value="cancelled">cancelled</option>
+                </select>
+              </td>
+              <td><button onclick="deleteRide('${ride._id}')">❌ Delete</button></td>
+            `;
+            tbody.appendChild(row);
+          });
+        });
+    }
+
+    function updateRide(id, status) {
+      fetch(`${API}/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      }).then(() => loadRides());
+    }
+
+    function deleteRide(id) {
+      fetch(`${API}/${id}`, { method: 'DELETE' })
+        .then(() => loadRides());
+    }
+
+    loadRides();
+  </script>
+</body>
+</html>
