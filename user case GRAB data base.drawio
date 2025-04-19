@@ -1,0 +1,56 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36" version="26.2.13">
+  <diagram name="Page-1" id="333dkTFk-6zzkUV9qQgM">
+    <mxGraphModel dx="1758" dy="503" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="yQ4hKTN907ZGZd2FeKaL-1" value="" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#76608a;fontColor=#ffffff;strokeColor=#432D57;gradientColor=default;gradientDirection=east;shadow=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="1">
+          <mxGeometry x="150" y="210" width="555" height="555" as="geometry" />
+        </mxCell>
+        <mxCell id="yQ4hKTN907ZGZd2FeKaL-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" edge="1" parent="1" source="yQ4hKTN907ZGZd2FeKaL-2" target="yQ4hKTN907ZGZd2FeKaL-13">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="170" y="335" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yQ4hKTN907ZGZd2FeKaL-2" value="Passenger / User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#b1ddf0;strokeColor=#10739e;direction=east;flipV=0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="260" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="yQ4hKTN907ZGZd2FeKaL-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" edge="1" parent="1" source="yQ4hKTN907ZGZd2FeKaL-3" target="yQ4hKTN907ZGZd2FeKaL-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yQ4hKTN907ZGZd2FeKaL-3" value="Driver / Rider" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="1">
+          <mxGeometry x="760" y="260" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="yQ4hKTN907ZGZd2FeKaL-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fillColor=#b1ddf0;strokeColor=#10739e;" edge="1" parent="1" source="yQ4hKTN907ZGZd2FeKaL-4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="40" y="669.75" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yQ4hKTN907ZGZd2FeKaL-4" value="Grab Admin / Platform Operator" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="1">
+          <mxGeometry x="30" y="640" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="yQ4hKTN907ZGZd2FeKaL-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#b1ddf0;strokeColor=#10739e;" edge="1" parent="1" source="yQ4hKTN907ZGZd2FeKaL-6" target="yQ4hKTN907ZGZd2FeKaL-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yQ4hKTN907ZGZd2FeKaL-6" value="Merchant / Restaurant Partner" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="1">
+          <mxGeometry x="780" y="600" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="yQ4hKTN907ZGZd2FeKaL-13" value="&lt;div style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;• Books rides&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;white-space:pre&quot;&gt;&#x9;&lt;/span&gt;• Orders food, groceries, and &lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;parcels.&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;span style=&quot;white-space:pre&quot;&gt;&#x9;&lt;/span&gt;• Uses GrabPay for digital &lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;payments.&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="1">
+          <mxGeometry x="180" y="260" width="220" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="yQ4hKTN907ZGZd2FeKaL-14" value="&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;•&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;font style=&quot;&quot;&gt;Provides transport services (car, bike, taxi).&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;•&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Delivers food, groceries, and packages.&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="1">
+          <mxGeometry x="450" y="260" width="220" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="yQ4hKTN907ZGZd2FeKaL-16" value="&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;•&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Manages app services, support, and compliance.&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;•&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Handles user data and payment processing.&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="1">
+          <mxGeometry x="180" y="540" width="220" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="yQ4hKTN907ZGZd2FeKaL-17" value="&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;•&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;Receives and fulfills food and grocery orders.&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;br&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;white-space: normal;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;•&lt;span style=&quot;white-space:pre&quot;&gt;&#x9;&lt;/span&gt;Manages menus and promotions.&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="verticalAlign=top;align=left;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=4;html=1;whiteSpace=wrap;fillColor=#b1ddf0;strokeColor=#10739e;" vertex="1" parent="1">
+          <mxGeometry x="450" y="540" width="220" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="yQ4hKTN907ZGZd2FeKaL-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0;entryDx=95;entryDy=220;entryPerimeter=0;fillColor=#b1ddf0;strokeColor=#10739e;" edge="1" parent="1" source="yQ4hKTN907ZGZd2FeKaL-4" target="yQ4hKTN907ZGZd2FeKaL-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
