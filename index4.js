@@ -140,22 +140,6 @@ app.post('/drivers/acceptBook', async (req, res) => {
 });
 
 
-/*// DELETE /driver/:id - Cancel A Ride
-app.delete('/drivers/:id', async (req, res) => {
-    try {
-        const result = await db.collection('rides').deleteOne(
-            { _id: new ObjectId(req.params.id) }
-        );
-
-        if (result.deletedCount === 0) {
-            return res.status(404).json({ error: "Ride Not Found" });
-        }
-        res.status(200).json({ deleted: result.deletedCount });
-    } catch (err) {
-        res.status(400).json({ error: "Invalid Ride Id Or Data" });
-    }
-});*/
-
 //--------------------------USER COLLECTION-------------------------
 //POST /users - Book A Ride
 app.post('/users/book', async (req, res) => {
