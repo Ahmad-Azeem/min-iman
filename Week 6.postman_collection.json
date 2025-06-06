@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "28e05e4f-ff0a-43e4-b64f-d45ab59de893",
+		"name": "Week 6",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43988907",
+		"_collection_link": "https://ahmad-azeem-6277059.postman.co/workspace/Ahmad-Azeem's-Workspace~856dabc8-bb3d-411b-8121-0df60255f0a0/collection/43988907-28e05e4f-ff0a-43e4-b64f-d45ab59de893?action=share&source=collection_link&creator=43988907"
+	},
+	"item": [
+		{
+			"name": "Register Week 6",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"fabrizioromano@gmail.com\",\r\n  \"password\": \"FabrizioRomano123!\",\r\n  \"role\": \"driver\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Week 6",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"fabrizioromano@gmail.com\",\r\n  \"password\": \"FabrizioRomano123!\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Display Week 6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODQwZjViNmQ5ZjNhZDRkZWIwMzdjNWQiLCJyb2xlIjoiZHJpdmVyIiwiaWF0IjoxNzQ5MDg3Njk0LCJleHAiOjE3NDkwOTEyOTR9.lbNa3lMHOgkvqdIR4mTu32aJElSMdijO_NddTIw3XC0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/admin/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"admin",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Week 6",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODNlNTQ2NzI1NWU5ZjY2ZTQ0ZWRjOGUiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NDg5MTU0MDMsImV4cCI6MTc0ODkxOTAwM30.CzLi0790sQfyxqC7GXipVfKRXAMbzF-BKEwseOdc_nQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/admin/users/683e5467255e9f66e44edc8e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"admin",
+						"users",
+						"683e5467255e9f66e44edc8e"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -8,6 +8,10 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
+require('dotenv').config();
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 
 
 let db;
@@ -202,4 +206,4 @@ app.patch('/users/:id', async (req, res) => {
     } catch (err) {
         res.status(500).json({ error: "Invalid Ride Id Or Data" });
     }
-});//ayam
+});
