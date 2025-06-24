@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Hailing System Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+        h1 {
+            margin: 0;
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .card h2 {
+            margin-top: 0;
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        .card-content {
+            margin-top: 15px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3498db;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+        .recent-rides {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .ride-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .ride-item:last-child {
+            border-bottom: none;
+        }
+        .status {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-requested {
+            background-color: #f39c12;
+            color: white;
+        }
+        .status-completed {
+            background-color: #2ecc71;
+            color: white;
+        }
+        .nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .nav-item {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            margin: 0 5px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+            font-size: inherit;
+        }
+        .nav-item:hover {
+            background-color: #2980b9;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 500px;
+        }
+        .close-btn {
+            float: right;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .submit-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>E-Hailing System Dashboard</h1>
+        </header>
+        
+        <div class="nav">
+            <a href="#admin" class="nav-item">Admin</a>
+            <a href="#drivers" class="nav-item">Drivers</a>
+            <a href="#users" class="nav-item">Users</a>
+            <a href="#rides" class="nav-item">Rides</a>
+            <a href="#analytics" class="nav-item">Analytics</a>
+        </div>
+        
+        <div class="dashboard-grid">
+            <!-- Admin Section -->
+            <div class="card" id="admin">
+                <h2>Admin Panel</h2>
+                <div class="card-content">
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-value">24</div>
+                            <div class="stat-label">Active Drivers</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">156</div>
+                            <div class="stat-label">Registered Users</div>
+                        </div>
+                    </div>
+                    <h3>Admin Actions:</h3>
+                    <ul>
+                        <li>View all drivers</li>
+                        <li>View all users</li>
+                        <li>Manage user accounts</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Drivers Section -->
+            <div class="card" id="drivers">
+                <h2>Drivers Management</h2>
+                <div class="card-content">
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-value">18</div>
+                            <div class="stat-label">Available</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">6</div>
+                            <div class="stat-label">On Ride</div>
+                        </div>
+                    </div>
+                    <h3>Driver Actions:</h3>
+                    <ul>
+                        <li>Driver registration</li>
+                        <li>Update availability status</li>
+                        <li>View driver ratings</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Users Section -->
+            <div class="card" id="users">
+                <h2>User Management</h2>
+                <div class="card-content">
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-value">4.7</div>
+                            <div class="stat-label">Avg Rating</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">83%</div>
+                            <div class="stat-label">Active Users</div>
+                        </div>
+                    </div>
+                    <h3>User Actions:</h3>
+                    <ul>
+                        <li>User registration</li>
+                        <li>User login</li>
+                        <li>Book a ride</li>
+                        <li>Rate drivers</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Rides Section -->
+            <div class="card" id="rides">
+                <h2>Recent Rides</h2>
+                <div class="card-content">
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-value">42</div>
+                            <div class="stat-label">Today</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">289</div>
+                            <div class="stat-label">This Week</div>
+                        </div>
+                    </div>
+                    <h3>Recent Ride Activity:</h3>
+                    <div class="recent-rides">
+                        <div class="ride-item">
+                            <strong>KLCC → Sheraton Hotel</strong><br>
+                            Driver: Joe • <span class="status status-requested">Requested</span>
+                        </div>
+                        <div class="ride-item">
+                            <strong>Central Park → Times Square</strong><br>
+                            Driver: DRIVER123 • <span class="status status-requested">Requested</span>
+                        </div>
+                        <div class="ride-item">
+                            <strong>Central Park → Times Square</strong><br>
+                            Driver: DRIVER123 • <span class="status status-completed">Completed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Analytics Section -->
+            <div class="card" id="analytics">
+                <h2>User Analytics</h2>
+                <div class="card-content">
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-value">+12%</div>
+                            <div class="stat-label">Growth</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">4.8</div>
+                            <div class="stat-label">Satisfaction</div>
+                        </div>
+                    </div>
+                    <h3>Key Metrics:</h3>
+                    <ul>
+                        <li>Passenger demographics</li>
+                        <li>Ride frequency analysis</li>
+                        <li>Peak hour trends</li>
+                        <li>Revenue analytics</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="card">
+                <h2>Quick Actions</h2>
+                <div class="card-content">
+                    <button id="registerUserBtn" class="nav-item" style="display: block; width: 100%; margin-bottom: 10px;">Register New User</button>
+                    <button id="addDriverBtn" class="nav-item" style="display: block; width: 100%; margin-bottom: 10px;">Add New Driver</button>
+                    <button id="viewRidesBtn" class="nav-item" style="display: block; width: 100%; margin-bottom: 10px;">View All Rides</button>
+                    <button id="generateReportBtn" class="nav-item" style="display: block; width: 100%;">Generate Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register User Modal -->
+    <div id="registerUserModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Register New User</h2>
+            <form id="registerUserForm">
+                <div class="form-group">
+                    <label for="userName">User Name:</label>
+                    <input type="text" id="userName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone">
+                </div>
+                <div class="form-group">
+                    <label for="role">Role:</label>
+                    <select id="role">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-btn">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Driver Modal -->
+    <div id="addDriverModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Add New Driver</h2>
+            <form id="addDriverForm">
+                <div class="form-group">
+                    <label for="driverName">Driver Name:</label>
+                    <input type="text" id="driverName" required>
+                </div>
+                <div class="form-group">
+                    <label for="driverEmail">Email:</label>
+                    <input type="email" id="driverEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="driverPassword">Password:</label>
+                    <input type="password" id="driverPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="rating">Initial Rating:</label>
+                    <input type="number" id="rating" min="1" max="5" step="0.1" value="4.5">
+                </div>
+                <button type="submit" class="submit-btn">Add Driver</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Rides Modal -->
+    <div id="viewRidesModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>All Rides</h2>
+            <div id="ridesList" class="recent-rides">
+                <!-- Rides will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Generate Report Modal -->
+    <div id="generateReportModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Generate Report</h2>
+            <form id="reportForm">
+                <div class="form-group">
+                    <label for="reportType">Report Type:</label>
+                    <select id="reportType">
+                        <option value="daily">Daily Summary</option>
+                        <option value="weekly">Weekly Summary</option>
+                        <option value="monthly">Monthly Summary</option>
+                        <option value="custom">Custom Range</option>
+                    </select>
+                </div>
+                <div class="form-group" id="customDateRange" style="display: none;">
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate">
+                    <label for="endDate">End Date:</label>
+                    <input type="date" id="endDate">
+                </div>
+                <button type="submit" class="submit-btn">Generate Report</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modals = {
+            registerUser: document.getElementById('registerUserModal'),
+            addDriver: document.getElementById('addDriverModal'),
+            viewRides: document.getElementById('viewRidesModal'),
+            generateReport: document.getElementById('generateReportModal')
+        };
+
+        const buttons = {
+            registerUser: document.getElementById('registerUserBtn'),
+            addDriver: document.getElementById('addDriverBtn'),
+            viewRides: document.getElementById('viewRidesBtn'),
+            generateReport: document.getElementById('generateReportBtn')
+        };
+
+        // Open modals
+        buttons.registerUser.addEventListener('click', () => modals.registerUser.style.display = 'flex');
+        buttons.addDriver.addEventListener('click', () => modals.addDriver.style.display = 'flex');
+        buttons.viewRides.addEventListener('click', () => {
+            modals.viewRides.style.display = 'flex';
+            // Here you would typically fetch rides from your API
+            // For demo purposes, we'll use sample data
+            const ridesList = document.getElementById('ridesList');
+            ridesList.innerHTML = `
+                <div class="ride-item">
+                    <strong>KLCC → Sheraton Hotel</strong><br>
+                    User: Fairuz • Driver: Joe • Status: <span class="status status-completed">Completed</span>
+                </div>
+                <div class="ride-item">
+                    <strong>Central Park → Times Square</strong><br>
+                    User: John • Driver: DRIVER123 • Status: <span class="status status-completed">Completed</span>
+                </div>
+                <div class="ride-item">
+                    <strong>Airport → Downtown</strong><br>
+                    User: Sarah • Driver: Mike • Status: <span class="status status-requested">In Progress</span>
+                </div>
+            `;
+        });
+        buttons.generateReport.addEventListener('click', () => modals.generateReport.style.display = 'flex');
+
+        // Close modals when clicking X
+        document.querySelectorAll('.close-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.closest('.modal').style.display = 'none';
+            });
+        });
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (event) => {
+            if (event.target.className === 'modal') {
+                event.target.style.display = 'none';
+            }
+        });
+
+        // Form submissions
+        document.getElementById('registerUserForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('User registration would be submitted to your API here');
+            modals.registerUser.style.display = 'none';
+        });
+
+        document.getElementById('addDriverForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Driver registration would be submitted to your API here');
+            modals.addDriver.style.display = 'none';
+        });
+
+        document.getElementById('reportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Report generation would be processed here');
+            modals.generateReport.style.display = 'none';
+        });
+
+        // Show/hide custom date range based on report type
+        document.getElementById('reportType').addEventListener('change', function() {
+            const customRange = document.getElementById('customDateRange');
+            customRange.style.display = this.value === 'custom' ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
